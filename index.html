@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parkinson's Disease Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts & Animate.css -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.2rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            text-align: justify;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+            color: #444;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ff6f91;
+            transform: scale(1.03);
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 118, 138, 0.5);
+        }
+
+        .output {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            animation: fadeInUp 0.7s ease-in-out;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container animate__animated animate__fadeIn">
+        <h1>🧠 Parkinson's Disease Predictor</h1>
+        
+        <p class="description">
+            Parkinson’s disease is a neurodegenerative disorder that affects movement. 
+            Symptoms may include tremors, stiffness, and difficulty with balance and coordination.
+            Enter your test data to check if the model predicts a possibility of Parkinson’s.
+        </p>
+
+        <form action="/predict" method="POST">
+            <label for="text">Enter symptom data (comma-separated features):</label>
+            <input type="text" name="text" id="text" placeholder="e.g. 119,157,0.0026,0.0002,..." required>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+
+        {% if message %}
+            <div class="output animate__animated animate__fadeInUp">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
